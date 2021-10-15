@@ -1,6 +1,6 @@
-from .models import Article
+from .models import Article, Comment
 from django.forms import ModelForm, TextInput, DateTimeInput, Textarea
-
+import django.forms
 
 class ArticleForm(ModelForm):
     class Meta:
@@ -22,6 +22,27 @@ class ArticleForm(ModelForm):
             }),
             'date': DateTimeInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Дата публикации'
+                'placeholder': 'Дата публикации',
+                'type': 'datetime-local'
             })
     }
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
+
+        widgets = {
+            'name':TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ваше имя'
+            }),
+
+            'body':TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Ваш комментарий'
+            })
+        }
+
+
