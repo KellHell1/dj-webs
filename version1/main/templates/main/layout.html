@@ -13,7 +13,15 @@
 <body>
     <aside>
         <img src="{% static 'main/img/bmw-logo.png' %}" width="90" height="90" alt="LOGO">
-        <span class="logo">Logo</span>
+        <span class="logo">Logo</span><br>
+
+
+        <h3>
+        {% if request.user.is_authenticated %}
+              Пользователь: {{ user }}
+        {% endif %}
+        </h3>
+
         <h3>Навигация</h3>
         <ul>
             <a href="{% url 'home' %}"> <li> <i class="fa-solid fa-house"></i> Главная страница </li><a/>
@@ -23,6 +31,7 @@
             <a href="{% url 'create' %}"> <li><button class="btn btn-info"><i class="fas fa-plus-circle"></i> Добавить запись </button></li></a>
             <a href="{% url 'login' %}"> <li> <button type="button" class="btn btn-success">Войти в аккаунт</button></li></a>
         </ul>
+
     </aside>
     <main>
         {% block content %}
